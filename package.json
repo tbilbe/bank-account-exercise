@@ -1,0 +1,22 @@
+{
+  "name": "bank-account-exercise",
+  "version": "1.0.0",
+  "description": "![NotWest](images/notwest.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbilbe/bank-account-exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tbilbe/bank-account-exercise/issues"
+  },
+  "homepage": "https://github.com/tbilbe/bank-account-exercise#readme",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}
