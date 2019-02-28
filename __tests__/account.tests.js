@@ -41,3 +41,19 @@ xdescribe("deposit monies from working hard!", () => {
     expect(myAccount.balance).toBe(750021);
   })
 })
+
+xdescribe('viewing how rich i am!', () => {
+  let myAccount;
+  beforeEach(() => {
+    myAccount = new Account('tom bilbe', 100);
+  });
+  test('How much have i got in the account now?', () => {
+    expect(myAccount.balance).toBe(100);
+    expect(myAccount.checkBalance).toBe(`You have £100 left in the account.`);
+  });
+  test('Want to go for a drink? how much have i got?', () => {
+    myAccount.withdraw(45);
+    expect(myAccount.balance).toBe(55);
+    expect(myAccount.checkBalance).toBe(`You have £55 left in the account.`);
+  });
+});
