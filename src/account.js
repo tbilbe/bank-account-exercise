@@ -16,6 +16,7 @@ Account.prototype.withdraw = function (withdrawAmnt) {
   if (withdrawAmnt < this.balance) {
     // console.log('withdrawAmnt', withdrawAmnt);
     // console.log('this balance', this.balance);
+    this.transaction.push({ withdraw: withdrawAmnt });
     this.balance -= withdrawAmnt;
     // console.log('newBalance', newBalance);
     return `Success: Your account balance is now, £${newBalance}`;
@@ -25,7 +26,12 @@ Account.prototype.withdraw = function (withdrawAmnt) {
 }
 
 Account.prototype.deposit = function (amount) {
+  this.transaction.push({ deposit: amount });
   return this.balance += amount;
+}
+
+Account.prototype.viewStatement = function () {
+  return this.transaction;
 }
 
 

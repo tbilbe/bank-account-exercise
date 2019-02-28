@@ -57,3 +57,27 @@ xdescribe('viewing how rich i am!', () => {
     expect(myAccount.checkBalance).toBe(`You have £55 left in the account.`);
   });
 });
+
+describe('Bank Statements: what do i do with my monies?', () => {
+  let myAccount;
+  beforeEach(() => {
+    myAcc = new Account('toms acc', 2500);
+    myAcc.withdraw(600);
+    myAcc.withdraw(30);
+    myAcc.deposit(800);
+  })
+  test('Account data object', () => {
+    expect(myAcc.viewStatement()).toEqual([{ withdraw: 600 }, { withdraw: 30 }, { deposit: 800 }]);
+    expect(myAcc.checkBalance).toBe(`You have £2670 left in the account.`);
+  });
+  test('Can i see whats happening with the account?', () => {
+    expect(myAcc.viewStatement()[0]).toEqual({ withdraw: 600 })
+  });
+  test('Does the balance still update correctly?', () => {
+    expect(myAcc.balance).toBe(2670);
+    myAcc.deposit(30)
+    expect(myAcc.balance).toBe(2700);
+    myAcc.withdraw(200);
+    expect(myAcc.balance).toBe(2500);
+  });
+})
