@@ -4,7 +4,8 @@
   "description": "![NotWest](images/notwest.png)",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "npx": "jest --coverage"
   },
   "repository": {
     "type": "git",

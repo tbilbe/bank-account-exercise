@@ -1,6 +1,6 @@
 const { Account } = require('../src/account.js');
 
-xdescribe("A customer should have a bank account!", () => {
+describe("A customer should have a bank account!", () => {
   test("The constructor creates a bank acount with a name attached", () => {
     expect(new Account('Thomas Bilbe')).toBeInstanceOf(Object);
   });
@@ -11,7 +11,7 @@ xdescribe("A customer should have a bank account!", () => {
   });
 });
 
-xdescribe("check the balance of the current account", () => {
+describe("check the balance of the current account", () => {
   let myAccount;
   beforeEach(() => {
     myAccount = new Account('tom and laurens joint acc', 500000)
@@ -20,10 +20,14 @@ xdescribe("check the balance of the current account", () => {
     expect(myAccount.withdraw(40000)).toBe(`Success: Your account balance is now, £460000`);
     expect(myAccount.withdraw(100000)).toBe(`Success: Your account balance is now, £400000`);
   });
+  test('you wont be able to withdraw if the mulah aint there!', () => {
+    expect(myAccount.withdraw(499999)).toBe(`Success: Your account balance is now, £1`);
+    expect(myAccount.withdraw(2)).toBe(`you cannot withdraw ${withdrawAmnt}, not enough in the account.`)
+  });
 
 });
 
-xdescribe("deposit monies from working hard!", () => {
+describe("deposit monies from working hard!", () => {
   let myAccount;
   beforeAll(() => {
     myAccount = new Account('laurens acc', 500000)
@@ -42,7 +46,7 @@ xdescribe("deposit monies from working hard!", () => {
   })
 })
 
-xdescribe('viewing how rich i am!', () => {
+describe('viewing how rich i am!', () => {
   let myAccount;
   beforeEach(() => {
     myAccount = new Account('tom bilbe', 100);
@@ -59,7 +63,7 @@ xdescribe('viewing how rich i am!', () => {
 });
 
 describe('Bank Statements: what do i do with my monies?', () => {
-  let myAccount;
+  let myAcc;
   beforeEach(() => {
     myAcc = new Account('toms acc', 2500);
     myAcc.withdraw(600);
@@ -81,3 +85,22 @@ describe('Bank Statements: what do i do with my monies?', () => {
     expect(myAcc.balance).toBe(2500);
   });
 })
+
+describe('Filter withdrawl or deposits', () => {
+  let myAcc;
+  beforeAll(() => {
+    myAcc = new Account('toms acc', 2500);
+    myAcc.withdraw(600);
+    myAcc.withdraw(30);
+    myAcc.deposit(800);
+    // console.table(myAcc.transaction);
+    // console.table(myAcc);
+    console.log('my account: ', myAcc);
+  });
+  test('can i see only withdraws?!', () => {
+    expect(myAcc.filterTransaction('withdraw')).toEqual([{ withdraw: 600 }, { withdraw: 30 }]);
+  })
+  test('can i see only deposits?!', () => {
+    expect(myAcc.filterTransaction('deposit')).toEqual([{ deposit: 800 }]);
+  })
+});
