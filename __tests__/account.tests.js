@@ -18,11 +18,11 @@ describe("check the balance of the current account", () => {
   });
   test('we can withdraw money from the account', () => {
     expect(myAccount.withdraw(40000)).toBe(`Success: Your account balance is now, £460000`);
-    expect(myAccount.withdraw(100000)).toBe(`Success: Your account balance is now, £400000`);
+    expect(myAccount.withdraw(100000)).toBe(`Success: Your account balance is now, £360000`);
   });
   test('you wont be able to withdraw if the mulah aint there!', () => {
     expect(myAccount.withdraw(499999)).toBe(`Success: Your account balance is now, £1`);
-    expect(myAccount.withdraw(2)).toBe(`you cannot withdraw ${withdrawAmnt}, not enough in the account.`)
+    expect(myAccount.withdraw(2)).toBe(`you cannot withdraw £2, not enough in the account.`);
   });
 
 });

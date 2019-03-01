@@ -21,7 +21,7 @@ Account.prototype.withdraw = function (withdrawAmnt) {
     // console.log('newBalance', newBalance);
     return `Success: Your account balance is now, £${this.balance}`;
   } else {
-    return `you cannot withdraw ${withdrawAmnt}, not enough in the account.`
+    return `you cannot withdraw £${withdrawAmnt}, not enough in the account.`
   }
 }
 
